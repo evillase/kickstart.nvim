@@ -10,6 +10,8 @@ vim.opt.list = true
 
 -- remove command line, unless in use
 vim.opt.cmdheight = 0
+-- remove status line from bottom of window, lualine should be at top
+vim.opt.laststatus = 0
 
 -- relative line numbering
 vim.opt.relativenumber = false

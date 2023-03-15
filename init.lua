@@ -140,7 +140,7 @@ require('lazy').setup({
         always_divide_middle = false,
         globalstatus = true,
       },
-      sections = {
+      tabline = {
         lualine_a = {'mode'},
         lualine_b = {'branch','diagnostics'},
         lualine_c = {{'filename',file_status=true,newfile_status=true,path=1}},
@@ -148,8 +148,8 @@ require('lazy').setup({
         lualine_y = {'encoding','fileformat','filetype'},
         lualine_z = {'location'},
       },
+      sections = {},
       inactive_sections = {},
-      tabline = {},
       winbar = {},
       extensions = {'neo-tree'},
     },
