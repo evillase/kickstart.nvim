@@ -312,7 +312,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 require('nvim-treesitter.install').compilers = { 'zigcc', 'zigc++' }
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'bash', 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'ruby', 'zig', 'json', 'make', 'cmake', 'vim', 'vimdoc' },
+  ensure_installed = { 'bash', 'c', 'cmake', 'cpp', 'go', 'json', 'lua', 'make', 'python', 'ruby', 'rust', 'vim', 'vimdoc', 'zig', },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
