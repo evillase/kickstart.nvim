@@ -142,8 +142,8 @@ require('lazy').setup({
       },
       tabline = {
         lualine_a = {'mode'},
-        lualine_b = {'branch','diagnostics'},
-        lualine_c = {{'filename',file_status=true,newfile_status=true,path=1}},
+        lualine_b = {{'branch',icons_enabled=true,icon='',},'diagnostics'},
+        lualine_c = {{'filename',icons_enabled=true,icon='󰧮',file_status=true,newfile_status=true,path=1}},
         lualine_x = {'searchcount'},
         lualine_y = {'encoding','fileformat','filetype'},
         lualine_z = {'location'},
@@ -151,6 +151,9 @@ require('lazy').setup({
       sections = {},
       inactive_sections = {},
       winbar = {},
+      inactive_winbar = {
+        lualine_a = {{'filename',file_status=true,path=0}},
+      },
       extensions = {'neo-tree'},
     },
   },
