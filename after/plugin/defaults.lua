@@ -1,3 +1,6 @@
+-- set theme
+vim.cmd.colorscheme 'tokyonight' -- nordic, nord, catpuccin, tokyonight, onedark
+
 -- set whitespace symbols
 vim.opt.listchars = {
   tab = '→ ',
