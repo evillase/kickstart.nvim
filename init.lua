@@ -135,10 +135,23 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
         component_separators = '|',
         section_separators = '',
+        always_divide_middle = false,
+        globalstatus = true,
       },
+      sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch','diagnostics'},
+        lualine_c = {{'filename',file_status=true,newfile_status=true,path=1}},
+        lualine_x = {'searchcount'},
+        lualine_y = {'encoding','fileformat','filetype'},
+        lualine_z = {'location'},
+      },
+      inactive_sections = {},
+      tabline = {},
+      winbar = {},
+      extensions = {'neo-tree'},
     },
   },
 
