@@ -442,7 +442,11 @@ local servers = {
   ruby_ls = {},
   jsonls = {},
   taplo = {},
-  yamlls = {},
+  yamlls = {
+    yaml = {
+      keyOrdering = false,
+    },
+  },
 
   lua_ls = {
     Lua = {
