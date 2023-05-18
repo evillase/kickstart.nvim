@@ -151,9 +151,7 @@ require('lazy').setup({
       sections = {},
       inactive_sections = {},
       winbar = {},
-      inactive_winbar = {
-        lualine_a = {{'filename',file_status=true,path=0}},
-      },
+      inactive_winbar = {},
       extensions = {'neo-tree'},
     },
   },
