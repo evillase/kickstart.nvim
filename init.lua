@@ -439,24 +439,24 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
+  bashls = {},
   clangd = {},
   -- gopls = {},
-  pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
-  ruby_ls = {},
   jsonls = {},
-  taplo = {},
-  yamlls = {
-    yaml = {
-      keyOrdering = false,
-    },
-  },
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
+    },
+  },
+  pyright = {},
+  -- rust_analyzer = {},
+  -- tsserver = {},
+  ruby_ls = {},
+  taplo = {},
+  yamlls = {
+    yaml = {
+      keyOrdering = false,
     },
   },
 }
