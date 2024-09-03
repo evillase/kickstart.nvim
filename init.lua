@@ -169,8 +169,8 @@ require('lazy').setup({
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
     main = "ibl",
-    --@module "ibl"
-    --@type ibl.config
+    ---@module "ibl"
+    ---@type ibl.config
     opts = {},
   },
 
@@ -326,13 +326,19 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
-require('nvim-treesitter.install').compilers = { 'zigcc', 'zigc++' }
+require('nvim-treesitter.install').compilers = { 'zig' }
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'bash', 'c', 'cmake', 'cpp', 'go', 'json', 'lua', 'make', 'python', 'ruby', 'rust', 'vim', 'zig', },
 
+  -- Install parsers synchronously (only applied to 'ensure_installed')
+  sync_install = false,
+
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
+
+  -- List of parsers to ignore installing (or "all")
+  ignore_install = {},
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -461,7 +467,7 @@ local servers = {
   pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  ruby_ls = {},
+  rubocop = {},
   taplo = {},
   yamlls = {
     yaml = {
