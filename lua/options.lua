@@ -62,6 +62,8 @@ vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.o.cursorline = true
+-- Only highlight the number, not the whole line
+vim.o.cursorlineopt = "number"
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
