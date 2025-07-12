@@ -20,6 +20,8 @@ return {
     -- Installs the debug adapters for you
     'mason-org/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
+    -- Inline value virtual text
+    'theHamsta/nvim-dap-virtual-text',
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
@@ -27,32 +29,39 @@ return {
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
     {
-      '<F1>',
+      '<F6>',
       function()
         require('dap').continue()
       end,
       desc = 'Debug: Start/Continue',
     },
     {
-      '<F5>',
+      '<F4>',
       function()
         require('dap').step_into()
       end,
       desc = 'Debug: Step Into',
     },
     {
-      '<F6>',
+      '<F5>',
       function()
         require('dap').step_over()
       end,
       desc = 'Debug: Step Over',
     },
     {
-      '<F4>',
+      '<F3>',
       function()
         require('dap').step_out()
       end,
       desc = 'Debug: Step Out',
+    },
+    {
+      '<F2>',
+      function()
+        require('dap').run_to_cursor()
+      end,
+      desc = 'Debug: Run to Cursor',
     },
     {
       '<leader>b',
@@ -60,6 +69,13 @@ return {
         require('dap').toggle_breakpoint()
       end,
       desc = 'Debug: Toggle Breakpoint',
+    },
+    {
+      '<leader>?',
+      function()
+        require('dapui').eval(nil, { enter = true })
+      end,
+      desc = 'Debug: Evaluate Expression Under Cursor',
     },
     {
       '<leader>B',
@@ -70,7 +86,7 @@ return {
     },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
-      '<F3>',
+      '<F1>',
       function()
         require('dapui').toggle()
       end,
@@ -95,6 +111,8 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'python',
+        'cpptools',
       },
     }
 
@@ -113,7 +131,7 @@ return {
           step_over = '',
           step_out = '',
           step_back = '',
-          run_last = '󰈑',
+          run_last = '',
           terminate = '',
           disconnect = '',
         },
@@ -124,7 +142,7 @@ return {
     -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
     -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
     local breakpoint_icons = vim.g.have_nerd_font
-        and { Breakpoint = '', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '', Stopped = '' }
+        and { Breakpoint = '', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '', Stopped = '' }
       or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
     for type, icon in pairs(breakpoint_icons) do
       local tp = 'Dap' .. type
@@ -144,6 +162,42 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+    -- CPP Debugging
+    dap.adapters.cppdbg = {
+      id = 'cppdbg',
+      type = 'executable',
+      command = vim.fn.stdpath('data') .. '/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+      options = {
+        detached = false,
+      },
+    }
+    dap.configurations.cpp = {
+      {
+        name = 'Launch file with arguments (GDB)',
+        type = 'cppdbg',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopAtEntry = false,
+        args = function()
+          local input = vim.fn.input('Arguments: ')
+          return vim.split(input, ' ', { trimempty = true })
+        end,
+        MIMode = 'gdb',
+        miDebuggerPath = '/usr/intel/bin/gdb',
+        setupCommands = {
+          {
+            text = '-enable-pretty-printing',
+            description = 'Enable pretty printing for gdb',
+            ignoreFailures = true,
+          },
+        }
+      },
+    }
+    dap.configurations.c = dap.configurations.cpp
   end,
+
 }
 -- vim: ts=2 sts=2 sw=2 et
