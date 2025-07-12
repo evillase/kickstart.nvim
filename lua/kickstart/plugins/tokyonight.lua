@@ -12,12 +12,22 @@ return {
         styles = {
           comments = { italic = false }, -- Disable italics in comments
         },
+        on_colors = function(colors)
+          -- You can customize the colors here.
+          -- For example, you can change the color of the 'Comment' highlight group.
+          colors.bg = "#000000" -- Change the background color to black
+          colors.bg_dark = "#000000" -- Change the dark background color to black
+          colors.bg_float = "#000000" -- Change the float background color to black
+          -- colors.bg_sidebar = "#000000" -- Change the sidebar background color to black
+          colors.bg_statusline = "#000000" -- Change the statusline background color to black
+
+        end,
       }
 
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      --vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
 }
