@@ -96,6 +96,12 @@ return {
           --  For example, in C this would take you to the header.
           map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+          -- Fuzzy find all functions symbols in your current document.
+          -- This will only show functions, not variables, types, etc.
+          map('gF', function()
+            require('telescope.builtin').lsp_document_symbols({ symbols = {'function', 'method'} })
+          end , '[G]oto [F]unctions')
+
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
           map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
