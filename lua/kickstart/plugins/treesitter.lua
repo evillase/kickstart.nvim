@@ -8,7 +8,7 @@ return {
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'cmake', 'cpp', 'json', 'make', 'python', 'ruby', 'zig' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'cmake', 'cpp', 'json', 'make', 'python', 'ruby', 'zig', 'yaml' },
       -- Autoinstall languages that are not installed
       auto_install = false,
       highlight = {
