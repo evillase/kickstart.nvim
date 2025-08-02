@@ -84,6 +84,15 @@ return {
       end,
       desc = 'Debug: Set Breakpoint',
     },
+    {
+      '<leader>x',
+      function()
+        require('dap').clear_breakpoints()
+      end,
+      desc = 'Debug: Clear All Breakpoints',
+    },
+    -- TODO: add a keymap to show scope in a floating window and enter it
+
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
       '<F1>',
@@ -136,6 +145,29 @@ return {
           disconnect = '',
         },
       },
+      layouts = {
+        {
+          elements = {
+            { id = 'stacks', size = 0.40 },
+            { id = 'breakpoints', size = 0.30 },
+            { id = 'watches', size = 0.30 },
+          },
+          size = 30,
+          position = 'left',
+        },
+        {
+          elements = {
+            { id = 'repl', size = 0.5 },
+            { id = 'console', size = 0.5 },
+          },
+          size = 10,
+          position = 'bottom',
+        },
+      }
+    }
+
+    require('nvim-dap-virtual-text').setup {
+      virt_text_pos = 'inline',
     }
 
     -- Change breakpoint icons
@@ -162,6 +194,8 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+    -- TODO: Setup python adapter
+
     -- CPP Debugging
     dap.adapters.cppdbg = {
       id = 'cppdbg',
