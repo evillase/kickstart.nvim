@@ -76,9 +76,9 @@ vim.o.confirm = true
 -- Remove command line, unless in use
 vim.opt.cmdheight = 0
 
--- file space settings
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+-- file space settings let guess-indent set these for us based on buffer
+--vim.opt.tabstop = 2
+--vim.opt.shiftwidth = 2
 vim.opt.shiftround = true
 vim.opt.expandtab = true
 
